@@ -1,0 +1,30 @@
+{
+  "name": "ens-metadata-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Makoto Inoue <2630+makoto@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@ensdomains/content-hash": "^2.5.7",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.3.0",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "build": "tsc --project ./ && cpx 'src/assets/**' 'dist/assets'",
+    "dev": "ENV=local ts-node-dev --inspect -- src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.12",
+    "@types/jsdom": "^16.2.13",
+    "@types/node": "^15.12.2",
+    "test-listen": "^1.1.0",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.5.2",
+    "tsc": "^2.0.3"
+  }
+}
