@@ -100,8 +100,8 @@ yarn test:cov
 | HOST | Host (ip/domain) address of the running service | localhost | - | No |
 | ENV | Project scope | local | local/prod |
 | INAMEWRAPPER | InterfaceId of NameWrapper Contract | 0x1aa28a1e | - |
-| ADDRESS_ETH_REGISTRAR | Ethereum address of ENSBaseRegistrar Contract | 0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85 | - |
-| ADDRESS_NAME_WRAPPER | Ethereum address of NameWrapper Contract | 0x4D83cea620E3864F912046b73bB3a6c04Da75990 | - |
+| ADDRESS_ETH_REGISTRAR | smartBCH address of ENSBaseRegistrar Contract | 0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85 | - |
+| ADDRESS_NAME_WRAPPER | smartBCH address of NameWrapper Contract | 0x4D83cea620E3864F912046b73bB3a6c04Da75990 | - |
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
