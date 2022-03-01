@@ -1,4 +1,4 @@
-# ens-metadata-service
+# bch.is
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -22,14 +22,14 @@
 
 Request (example)
 
-https://metadata.ens.domains/mainnet/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85/42219085255511335250589442208301538195142221433306354426240614732612795430543/
+https://metadata.bch.domains/mainnet/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85/42219085255511335250589442208301538195142221433306354426240614732612795430543/
 
 ### Response (example)
 
 ```json
 {
-  "name": "nick.eth",
-  "description": "nick.eth, an ENS name.",
+  "name": "pat.bch",
+  "description": "pat.bch, a LNS name.",
   "attributes": [
     {
       "trait_type": "Created Date",
@@ -50,22 +50,22 @@ https://metadata.ens.domains/mainnet/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85/
   "name_length": 4,
   "short_name": null,
   "length": 0,
-  "url": "https://app.ens.domains/name/nick.eth",
+  "url": "https://app.bch.domains/name/pat.bch",
   "version": 0,
-  "background_image": "https://metadata.ens.domains/mainnet/avatar/nick.eth",
-  "image_url": "https://metadata.ens.domains/mainnet/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85/0x5d5727cb0fb76e4944eafb88ec9a3cf0b3c9025a4b2f947729137c5d7f84f68f/image"
+  "background_image": "https://metadata.bch.domains/mainnet/avatar/pat.bch",
+  "image_url": "https://metadata.bch.domains/mainnet/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85/0x5d5727cb0fb76e4944eafb88ec9a3cf0b3c9025a4b2f947729137c5d7f84f68f/image"
 }
 
 ```
 
-More info and list of all endpoints: https://metadata.ens.domains/docs
+More info and list of all endpoints: https://metadata.bch.domains/docs
 
 
 ## How to setup
 
 ```
-git clone https://github.com/ensdomains/ens-metadata-service.git
-cd ens-metadata-service
+git clone https://github.com/bchdomains/bch.is.git
+cd bch.is
 cp .env.org .env // Fill in Vars
 yarn
 yarn dev
@@ -106,15 +106,15 @@ yarn test:cov
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/ensdomains/ens-metadata-service.svg?style=for-the-badge
-[contributors-url]: https://github.com/ensdomains/ens-metadata-service/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ensdomains/ens-metadata-service.svg?style=for-the-badge
-[forks-url]: https://github.com/mdtanrikulu/ensdomains/ens-metadata-service/members
-[stars-shield]: https://img.shields.io/github/stars/ensdomains/ens-metadata-service.svg?style=for-the-badge
-[stars-url]: https://github.com/ensdomains/ens-metadata-service/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ensdomains/ens-metadata-service.svg?style=for-the-badge
-[issues-url]: https://github.com/ensdomains/ens-metadata-service/issues
-[license-shield]: https://img.shields.io/github/license/ensdomains/ens-metadata-service.svg?style=for-the-badge
-[license-url]: https://github.com/ensdomains/ens-metadata-service/blob/master/LICENSE
-[travis-shield]: https://img.shields.io/travis/com/ensdomains/ens-metadata-service/master?style=for-the-badge
-[travis-url]: https://travis-ci.com/github/ensdomains/ens-metadata-service
+[contributors-shield]: https://img.shields.io/github/contributors/bchdomains/bch.is.svg?style=for-the-badge
+[contributors-url]: https://github.com/bchdomains/bch.is/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/bchdomains/bch.is.svg?style=for-the-badge
+[forks-url]: https://github.com/mdtanrikulu/bchdomains/bch.is/members
+[stars-shield]: https://img.shields.io/github/stars/bchdomains/bch.is.svg?style=for-the-badge
+[stars-url]: https://github.com/bchdomains/bch.is/stargazers
+[issues-shield]: https://img.shields.io/github/issues/bchdomains/bch.is.svg?style=for-the-badge
+[issues-url]: https://github.com/bchdomains/bch.is/issues
+[license-shield]: https://img.shields.io/github/license/bchdomains/bch.is.svg?style=for-the-badge
+[license-url]: https://github.com/bchdomains/bch.is/blob/master/LICENSE
+[travis-shield]: https://img.shields.io/travis/com/bchdomains/bch.is/master?style=for-the-badge
+[travis-url]: https://travis-ci.com/github/bchdomains/bch.is

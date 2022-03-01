@@ -1,5 +1,5 @@
 {
-  "name": "ens-metadata-service",
+  "name": "lns-metadata-service",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Makoto Inoue <2630+makoto@users.noreply.github.com>",
