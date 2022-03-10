@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
 import getNetwork from "./network"
 
-const contentHash = require( '@ensdomains/content-hash')
+const contentHash = require('@ensdomains/content-hash')
 
 export function prependUrl(url: string) {
   if (url && !url.match(/http[s]?:\/\//)) {
@@ -19,11 +19,13 @@ export const paramToTextKey = (param) => {
     reddit: 'com.reddit',
     telegram: 'org.telegram',
     email: 'email',
+    url: 'url',
+    avatar: 'avatar'
   }
   if (map[param]) {
     return [map[param], true];
   }
-  
+
   return [param, false];
 }
 
@@ -130,7 +132,7 @@ export function decodeContenthash(encoded: any) {
     try {
       decoded = contentHash.decode(encoded)
       const codec = contentHash.getCodec(encoded)
-      if (codec === 'ipfs-ns') {         
+      if (codec === 'ipfs-ns') {
         protocolType = 'ipfs'
       } else if (codec === 'ipns-ns') {
         protocolType = 'ipns'
@@ -160,9 +162,27 @@ export function getContentHashExternalLink(encoded: string): string | undefined 
   return externalLink;
 }
 
-const ResolverAddress = ethers.utils.getAddress("0x82Ee91Ce107d5b82Cc978C0658d22fb55a1a500c");
+let ResolverAddress = undefined;
+async function getResolverAddress(provider) {
+  if (ResolverAddress) {
+    return ResolverAddress;
+  }
 
-const abi = [
+  const registryABI = [
+    'function resolver(bytes32 node) external view returns (address)'
+  ]
+  const contract = new ethers.Contract(
+    provider.network.ensAddress,
+    registryABI,
+    provider
+  );
+  ResolverAddress = await contract.resolver(ethers.utils.namehash('bch'));
+  console.log('EnsResolver address:', ResolverAddress);
+  return ResolverAddress;
+}
+
+
+const resolverABI = [
   'function contenthash(bytes32 node) view returns (bytes memory)',
   'function text(bytes32 node, string calldata key) view returns (string memory)',
 ]
@@ -173,9 +193,9 @@ export async function getLinks(
   const { provider } = getNetwork("smartbch-amber");
 
   try {
-    var contract = new ethers.Contract(
-      ResolverAddress,
-      abi,
+    const contract = new ethers.Contract(
+      await getResolverAddress(provider),
+      resolverABI,
       provider
     );
     const namehash = ethers.utils.namehash(domain);
@@ -196,9 +216,9 @@ export async function getContentHashRedirect(
   const { provider } = getNetwork("smartbch-amber");
 
   try {
-    var contract = new ethers.Contract(
-      ResolverAddress,
-      abi,
+    const contract = new ethers.Contract(
+      await getResolverAddress(provider),
+      resolverABI,
       provider
     );
     const namehash = ethers.utils.namehash(domain);
@@ -214,9 +234,9 @@ export async function getTextRecord(
   const { provider } = getNetwork("smartbch-amber");
 
   try {
-    var contract = new ethers.Contract(
-      ResolverAddress,
-      abi,
+    const contract = new ethers.Contract(
+      await getResolverAddress(provider),
+      resolverABI,
       provider
     );
     const namehash = ethers.utils.namehash(domain);
