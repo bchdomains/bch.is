@@ -11,7 +11,7 @@
 
 
 ### Request
-- __network:__ Name of the chain to query for. (mainnet | rinkeby | ropsten | goerli ...)
+- __network:__ Name of the chain to query for. (smartbch | smartbch-amber ...)
 - __contactAddress:__ accepts contractAddress of the NFT which represented by the tokenId
 - __NFT v1 - tokenId:__ accepts labelhash of ENS name in both hex and int format
 - __NFT v2 - tokenId:__ accepts namehash of ENS name in both hex and int format
