@@ -32,8 +32,7 @@ export default function (app: Express) {
     const host = (req.headers.host || "").split('.');
     host.pop();
 
-    // const domain = host.join('.');
-    const domain = 'pat'+'.bch';
+    const domain = host.join('.');
     if (domain === "bch") {
       res.send(utils.rootPage());
       return;
