@@ -190,7 +190,7 @@ const resolverABI = [
 export async function getLinks(
   domain: string,
 ): Promise<{ contentHashUrl?: string, url?: string }> {
-  const { provider } = getNetwork("smartbch-amber");
+  const { provider } = getNetwork("smartbch");
 
   try {
     const contract = new ethers.Contract(
@@ -213,7 +213,7 @@ export async function getLinks(
 export async function getContentHashRedirect(
   domain: string,
 ): Promise<string | undefined> {
-  const { provider } = getNetwork("smartbch-amber");
+  const { provider } = getNetwork("smartbch");
 
   try {
     const contract = new ethers.Contract(
@@ -231,7 +231,7 @@ export async function getContentHashRedirect(
 export async function getTextRecord(
   domain: string, field: string
 ): Promise<string | undefined> {
-  const { provider } = getNetwork("smartbch-amber");
+  const { provider } = getNetwork("smartbch");
 
   try {
     const contract = new ethers.Contract(
@@ -281,6 +281,7 @@ export function rootPage() {
       <p>If you are owner of a .bch domain, you can set 'ContentHash' or 'URL' in the app <a href="https://app.bch.domains">https://app.bch.domains</a></p>
       <p>This service redirects to a resolved external link first using 'ContentHash'</p>
       <p>It will fall back to a link set in 'URL' field</p>
+      <p>You can set content to any other field and it will be rendered in this service. E.g. <a href="https://lns.bch.is/description">https://lns.bch.is/description</a></p>
     </div>
   </body>
 </html>`
