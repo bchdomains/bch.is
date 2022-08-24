@@ -295,13 +295,23 @@ export function rootPage(host: string) {
     "doge.wf": `https://dns.doge.wf/description`,
   }[host];
 
+  const header = {
+    "bch.is": `bch.domains`,
+    "doge.wf": `dogedomains.wf`,
+  }[host];
+
+  const tld = {
+    "bch.is": `.bch`,
+    "doge.wf": `.doge`,
+  }[host];
+
   return `
 <!doctype html>
 <html lang="en">
   <body>
-    <h2>bch.domains resolution service</h2>
+    <h2>${header} resolution service</h2>
     <div>
-      <p>If you are owner of a .bch domain, you can set 'ContentHash' or 'URL' in the app <a href="${url}">${url}</a></p>
+      <p>If you are owner of a ${tld} domain, you can set 'ContentHash' or 'URL' in the app <a href="${url}">${url}</a></p>
       <p>This service redirects to a resolved external link first using 'ContentHash'</p>
       <p>It will fall back to a link set in 'URL' field</p>
       <p>You can set content to any other field and it will be rendered in this service. E.g. <a href="${descriptionUrl}">${descriptionUrl}</a></p>
