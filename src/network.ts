@@ -9,6 +9,20 @@ const NETWORK = {
   MAINNET: 'mainnet',
   SMARTBCH: 'smartbch',
   "SMARTBCH-AMBER": 'smartbch-amber',
+  DOGECHAIN: 'dogechain',
+  "DOGECHAIN-TESTNET": 'dogechain-testnet',
+};
+
+const NETWORK_ID: any = {
+  1: 'mainnet',
+  3: 'ropsten',
+  4: 'rinkeby',
+  5: 'goerli',
+  1337: 'local',
+  10000: 'smartbch',
+  10001: 'smartbch-amber',
+  2000: 'dogechain',
+  568: 'dogechain-testnet',
 };
 
 export default function getNetwork(network: string): any {
@@ -57,6 +71,24 @@ export default function getNetwork(network: string): any {
         name: "smartbch-amber",
         chainId: 10001,
         ensAddress: "0x32f1FBE59D771bdB7FB247FE97A635f50659202b"
+      }
+      break;
+    case NETWORK.DOGECHAIN:
+      SUBGRAPH_URL = 'https://graph.bch.domains/subgraphs/name/graphprotocol/ens-dogechain';
+      INFURA_URL = `https://rpc.yodeswap.dog`;
+      NETWORKISH = {
+        name: "dogechain",
+        chainId: 2000,
+        ensAddress: "0x834C46666c1dE7367B252682B9ABAb458DD333bf"
+      }
+      break;
+    case NETWORK['DOGECHAIN-TESTNET']:
+      SUBGRAPH_URL = 'https://graph.bch.domains/subgraphs/name/graphprotocol/ens-dogechain-testnet';
+      INFURA_URL = `https://rpc-testnet.dogechain.dog`;
+      NETWORKISH = {
+        name: "dogechain-testnet",
+        chainId: 568,
+        ensAddress: "0x08850859CE6B62A39918c8B806AfbE3442fE7b0b"
       }
       break;
     default:

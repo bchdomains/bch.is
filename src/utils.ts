@@ -162,10 +162,11 @@ export function getContentHashExternalLink(encoded: string): string | undefined 
   return externalLink;
 }
 
-let ResolverAddress = undefined;
+let resolverAddress = {};
 async function getResolverAddress(provider) {
-  if (ResolverAddress) {
-    return ResolverAddress;
+  const chainId: number = provider._network.chainId;
+  if (resolverAddress[chainId]) {
+    return resolverAddress[chainId];
   }
 
   const registryABI = [
@@ -176,21 +177,29 @@ async function getResolverAddress(provider) {
     registryABI,
     provider
   );
-  ResolverAddress = await contract.resolver(ethers.utils.namehash('bch'));
-  console.log('EnsResolver address:', ResolverAddress);
-  return ResolverAddress;
+  resolverAddress[chainId] = await contract.resolver(ethers.utils.namehash('resolver.eth'));
+  return resolverAddress[chainId];
 }
-
 
 const resolverABI = [
   'function contenthash(bytes32 node) view returns (bytes memory)',
   'function text(bytes32 node, string calldata key) view returns (string memory)',
 ]
 
+export function getNetworkByHost(host: string) {
+  if (host.toLowerCase().endsWith("bch.is")) {
+    return getNetwork("smartbch");
+  }
+
+  // if (host.toLowerCase().endsWith("doge.wf")) {
+    return getNetwork("dogechain");
+  // }
+}
+
 export async function getLinks(
-  domain: string,
+  domain: string, host: string
 ): Promise<{ contentHashUrl?: string, url?: string }> {
-  const { provider } = getNetwork("smartbch");
+  const { provider } = getNetworkByHost(host);
 
   try {
     const contract = new ethers.Contract(
@@ -211,9 +220,9 @@ export async function getLinks(
 }
 
 export async function getContentHashRedirect(
-  domain: string,
+  domain: string, host: string
 ): Promise<string | undefined> {
-  const { provider } = getNetwork("smartbch");
+  const { provider } = getNetworkByHost(host);
 
   try {
     const contract = new ethers.Contract(
@@ -229,9 +238,9 @@ export async function getContentHashRedirect(
 }
 
 export async function getTextRecord(
-  domain: string, field: string
+  domain: string, field: string, host: string
 ): Promise<string | undefined> {
-  const { provider } = getNetwork("smartbch");
+  const { provider } = getNetworkByHost(host);
 
   try {
     const contract = new ethers.Contract(
@@ -256,14 +265,18 @@ export function redirectPage(url?: string) {
 </html>`
 }
 
-export function notFoundPage(domain: string) {
+export function notFoundPage(domain: string, host: string) {
+  const url = {
+    "bch.is": `https://app.bch.domains/name/${domain}`,
+    "doge.wf": `https://app.dogedomains.wf/name/${domain}`,
+  }[host];
   return `
 <!doctype html>
 <html lang="en">
   <body>
     <h2>Redirect link not found for ${domain}</h2>
     <div>
-      <p>If you are owner of this ENS name, set 'ContentHash' or 'URL' at <a href="https://app.bch.domains/name/${domain}">https://app.bch.domains/name/${domain}</a></p>
+      <p>If you are owner of this ENS name, set 'ContentHash' or 'URL' at <a href="${url}">${url}</a></p>
       <p>This page will be used to redirect to a resolved external link first using 'ContentHash'</p>
       <p>It will fall back to a link set in 'URL' field</p>
     </div>
@@ -271,17 +284,27 @@ export function notFoundPage(domain: string) {
 </html>`
 }
 
-export function rootPage() {
+export function rootPage(host: string) {
+  const url = {
+    "bch.is": `https://app.bch.domains`,
+    "doge.wf": `https://app.dogedomains.wf`,
+  }[host];
+
+  const descriptionUrl = {
+    "bch.is": `https://lns.bch.is/description`,
+    "doge.wf": `https://dns.doge.wf/description`,
+  }[host];
+
   return `
 <!doctype html>
 <html lang="en">
   <body>
     <h2>bch.domains resolution service</h2>
     <div>
-      <p>If you are owner of a .bch domain, you can set 'ContentHash' or 'URL' in the app <a href="https://app.bch.domains">https://app.bch.domains</a></p>
+      <p>If you are owner of a .bch domain, you can set 'ContentHash' or 'URL' in the app <a href="${url}">${url}</a></p>
       <p>This service redirects to a resolved external link first using 'ContentHash'</p>
       <p>It will fall back to a link set in 'URL' field</p>
-      <p>You can set content to any other field and it will be rendered in this service. E.g. <a href="https://lns.bch.is/description">https://lns.bch.is/description</a></p>
+      <p>You can set content to any other field and it will be rendered in this service. E.g. <a href="${descriptionUrl}">${descriptionUrl}</a></p>
     </div>
   </body>
 </html>`
