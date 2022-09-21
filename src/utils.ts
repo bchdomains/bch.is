@@ -269,6 +269,7 @@ export function notFoundPage(domain: string, host: string) {
   const url = {
     "bch.is": `https://app.bch.domains/name/${domain}`,
     "doge.wf": `https://app.dogedomains.wf/name/${domain}`,
+    "dcdomain.wf": `https://app.dogedomains.wf/name/${domain}`,
   }[host];
   return `
 <!doctype html>
@@ -288,21 +289,25 @@ export function rootPage(host: string) {
   const url = {
     "bch.is": `https://app.bch.domains`,
     "doge.wf": `https://app.dogedomains.wf`,
+    "dcdomain.wf": `https://app.dogedomains.wf`,
   }[host];
 
   const descriptionUrl = {
     "bch.is": `https://lns.bch.is/description`,
     "doge.wf": `https://dns.doge.wf/description`,
+    "dcdomain.wf": `https://dns.doge.wf/description`,
   }[host];
 
   const header = {
     "bch.is": `bch.domains`,
     "doge.wf": `dogedomains.wf`,
+    "dcdomain.wf": `dogedomains.wf`,
   }[host];
 
   const tld = {
     "bch.is": `.bch`,
     "doge.wf": `.doge`,
+    "dcdomain.wf": `.dc`,
   }[host];
 
   return `

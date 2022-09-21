@@ -2,6 +2,8 @@ import { Express } from 'express';
 
 import * as utils from './utils'
 
+const supportedDomains = ["bch", "doge", "dc"]
+
 export default function (app: Express) {
   app.all("/", async (req, res) => {
     const hostParts = (req.headers.host || "").split('.');
@@ -9,7 +11,7 @@ export default function (app: Express) {
     hostParts.pop();
     const domain = hostParts.join('.');
 
-    if (domain === "bch" || domain === "doge") {
+    if (supportedDomains.includes(domain)) {
       res.send(utils.rootPage(host));
       return;
     }
@@ -35,7 +37,7 @@ export default function (app: Express) {
     hostParts.pop();
     const domain = hostParts.join('.');
 
-    if (domain === "bch" || domain === "doge") {
+    if (supportedDomains.includes(domain)) {
       res.send(utils.rootPage(host));
       return;
     }
