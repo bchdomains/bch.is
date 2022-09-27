@@ -9,7 +9,11 @@ export default function (app: Express) {
     const hostParts = (req.headers.host || "").split('.');
     const host = hostParts.slice(-2).join('.');
     hostParts.pop();
-    const domain = hostParts.join('.');
+    let domain = hostParts.join('.');
+
+    if (domain.endsWith('.dcdomain')) {
+      domain = domain.replace(/dcdomain$/, "dc")
+    }
 
     if (supportedDomains.includes(domain)) {
       res.send(utils.rootPage(host));
@@ -35,7 +39,11 @@ export default function (app: Express) {
     const hostParts = (req.headers.host || "").split('.');
     const host = hostParts.slice(-2).join('.');
     hostParts.pop();
-    const domain = hostParts.join('.');
+    let domain = hostParts.join('.');
+
+    if (domain.endsWith('.dcdomain')) {
+      domain = domain.replace(/dcdomain$/, "dc")
+    }
 
     if (supportedDomains.includes(domain)) {
       res.send(utils.rootPage(host));
