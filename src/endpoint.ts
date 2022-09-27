@@ -11,7 +11,7 @@ export default function (app: Express) {
     hostParts.pop();
     let domain = hostParts.join('.');
 
-    if (domain.endsWith('.dcdomain')) {
+    if (domain.endsWith('dcdomain')) {
       domain = domain.replace(/dcdomain$/, "dc")
     }
 
