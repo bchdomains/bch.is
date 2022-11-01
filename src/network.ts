@@ -11,6 +11,7 @@ const NETWORK = {
   "SMARTBCH-AMBER": 'smartbch-amber',
   DOGECHAIN: 'dogechain',
   "DOGECHAIN-TESTNET": 'dogechain-testnet',
+  ETHPOW: 'ethpow',
 };
 
 const NETWORK_ID: any = {
@@ -89,6 +90,15 @@ export default function getNetwork(network: string): any {
         name: "dogechain-testnet",
         chainId: 568,
         ensAddress: "0x08850859CE6B62A39918c8B806AfbE3442fE7b0b"
+      }
+      break;
+    case NETWORK["ETHPOW"]:
+      SUBGRAPH_URL = 'https://graph.uniwens.com/subgraphs/name/graphprotocol/ens-ethpow';
+      INFURA_URL = `https://uniwnode.com`;
+      NETWORKISH = {
+        name: "ethpow",
+        chainId: 10001,
+        ensAddress: "0xd3d3cF6937015593b3424F81e5F44CefB8A90588"
       }
       break;
     default:

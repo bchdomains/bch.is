@@ -191,8 +191,12 @@ export function getNetworkByHost(host: string) {
     return getNetwork("smartbch");
   }
 
-  // if (host.toLowerCase().endsWith("doge.wf")) {
+  if (host.toLowerCase().endsWith("doge.wf")) {
     return getNetwork("dogechain");
+  }
+
+  // if (host.toLowerCase().endsWith("uniw.to")) {
+    return getNetwork("ethpow");
   // }
 }
 
@@ -270,6 +274,7 @@ export function notFoundPage(domain: string, host: string) {
     "bch.is": `https://app.bch.domains/name/${domain}`,
     "doge.wf": `https://app.dogedomains.wf/name/${domain}`,
     "dcdomain.wf": `https://app.dogedomains.wf/name/${domain}`,
+    "uniw.to": `https://uniwens.com/name/${domain}`
   }[host];
   return `
 <!doctype html>
@@ -290,24 +295,28 @@ export function rootPage(host: string) {
     "bch.is": `https://app.bch.domains`,
     "doge.wf": `https://app.dogedomains.wf`,
     "dcdomain.wf": `https://app.dogedomains.wf`,
+    "uniw.to": `https://uniwens.com`
   }[host];
 
   const descriptionUrl = {
     "bch.is": `https://lns.bch.is/description`,
     "doge.wf": `https://dns.doge.wf/description`,
     "dcdomain.wf": `https://dns.doge.wf/description`,
+    "uniw.to": `https://uniwens.uniw.to/description`,
   }[host];
 
   const header = {
     "bch.is": `bch.domains`,
     "doge.wf": `dogedomains.wf`,
     "dcdomain.wf": `dogedomains.wf`,
+    "uniw.to": `uniw.to`,
   }[host];
 
   const tld = {
     "bch.is": `.bch`,
     "doge.wf": `.doge`,
     "dcdomain.wf": `.dc`,
+    "uniw.to": `.uniw`,
   }[host];
 
   return `
