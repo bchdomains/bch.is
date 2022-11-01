@@ -2,7 +2,7 @@ import { Express } from 'express';
 
 import * as utils from './utils'
 
-const supportedDomains = ["bch", "doge", "dc"]
+const supportedDomains = ["bch", "doge", "dc", "uniw"]
 
 export default function (app: Express) {
   app.all("/", async (req, res) => {
