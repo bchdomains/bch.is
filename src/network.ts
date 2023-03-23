@@ -76,7 +76,7 @@ export default function getNetwork(network: string): any {
       break;
     case NETWORK.DOGECHAIN:
       SUBGRAPH_URL = 'https://graph.bch.domains/subgraphs/name/graphprotocol/ens-dogechain';
-      INFURA_URL = `https://rpc.yodeswap.dog`;
+      INFURA_URL = `https://rpc.dogechain.dog`;
       NETWORKISH = {
         name: "dogechain",
         chainId: 2000,
